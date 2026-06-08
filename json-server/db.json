@@ -1,0 +1,94 @@
+{
+  "rotas": [
+    {
+      "id": 1,
+      "origem": "São Paulo",
+      "destino": "Rio de Janeiro",
+      "duracaoEstimada": "2h30m"
+    },
+    {
+      "id": 2,
+      "origem": "Brasília",
+      "destino": "Salvador",
+      "duracaoEstimada": "4h15m"
+    },
+    {
+      "id": 3,
+      "origem": "Porto Alegre",
+      "destino": "Florianópolis",
+      "duracaoEstimada": "1h45m"
+    }
+  ],
+  "viagens": [
+    {
+      "id": 1,
+      "rotaId": 1,
+      "dataHoraPartida": "2026-06-15T08:00:00",
+      "precoBase": 150.00,
+      "assentosDisponiveis": 30
+    },
+    {
+      "id": 2,
+      "rotaId": 2,
+      "dataHoraPartida": "2026-06-16T14:30:00",
+      "precoBase": 280.00,
+      "assentosDisponiveis": 15
+    },
+    {
+      "id": 3,
+      "rotaId": 3,
+      "dataHoraPartida": "2026-06-17T10:15:00",
+      "precoBase": 85.00,
+      "assentosDisponiveis": 40
+    }
+  ],
+  "passageiros": [
+    {
+      "id": 1,
+      "nome": "João Silva",
+      "cpf": "123.456.789-00",
+      "email": "joao.silva@email.com",
+      "dataNascimento": "1985-03-15"
+    },
+    {
+      "id": 2,
+      "nome": "Maria Oliveira",
+      "cpf": "987.654.321-00",
+      "email": "maria.oliveira@email.com",
+      "dataNascimento": "1990-07-22"
+    },
+    {
+      "id": 3,
+      "nome": "Carlos Santos",
+      "cpf": "456.789.123-00",
+      "email": "carlos.santos@email.com",
+      "dataNascimento": "1988-11-05"
+    }
+  ],
+  "reservas": [
+    {
+      "id": 1,
+      "viagemId": 1,
+      "passageiroId": 1,
+      "numeroAssento": "A12",
+      "status": "confirmada",
+      "codigoReserva": "RES001"
+    },
+    {
+      "id": 2,
+      "viagemId": 2,
+      "passageiroId": 2,
+      "numeroAssento": "B5",
+      "status": "aguardando_pagamento",
+      "codigoReserva": "RES002"
+    },
+    {
+      "id": 3,
+      "viagemId": 3,
+      "passageiroId": 3,
+      "numeroAssento": "C18",
+      "status": "confirmada",
+      "codigoReserva": "RES003"
+    }
+  ]
+}
