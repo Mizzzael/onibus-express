@@ -1,0 +1,20 @@
+services:
+  api:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./json-server:/app
+    command: sh -c "npm install -g json-server && json-server --host 0.0.0.0 --port 3001 db.json"
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3001
+    depends_on:
+      - api

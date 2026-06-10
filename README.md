@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## OniBus Express — Desafio Técnico (Frontend) | Mizael Silva Lemos
 
-## Getting Started
+> Sistema de venda de passagens rodoviárias — interface desenvolvida como resposta ao desafio técnico da OniBus Express.
 
-First, run the development server:
+### 🚀 Tecnologias utilizadas
+- React 18 com TypeScript — componentes tipados e fluxo previsível
+- Zustand — gerenciamento de estado global leve e sem boilerplate
+- Zod — validação de formulários com schema declarativo
+- Axios — cliente HTTP com interceptors para tratamento centralizado de erros
+- Docker + Node — container para servir a aplicação em produção
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 📋 Funcionalidades implementadas
+
+- Busca de passagens — formulário de origem, destino e data; listagem de viagens com preço, horário e vagas; estados de loading e resultado vazio
+- Seleção de assento — mapa visual com assentos livres, ocupados e selecionado; resumo da viagem
+- Dados do passageiro e confirmação — formulário com validação de nome, CPF e e-mail; resumo da compra; tela de sucesso com código de reserva
+
+### O que ficou de fora
+
+- Integração real com backend (utiliza mock/MSW nos testes e dados simulados no ambiente de desenvolvimento)
+- Consulta de reserva (bônus) — busca por código, exibição de detalhes e opção de cancelamento
+
+### ▶️ Como rodar localmente
+
+#### Sem Docker
+> Precisa instalar o json-server: [https://www.npmjs.com/package/json-server](https://www.npmjs.com/package/json-server)
+```shell
+pnpm run install
+
+json-server --host 0.0.0.0 --port 3001 ./json-server/db.json
+
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Com Docker
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+docker compose up --build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🧪 Como rodar os testes
+```shell
+pnpm run test
+```
