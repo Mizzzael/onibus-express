@@ -69,7 +69,7 @@ describe('TripDate Component', () => {
 
     it('deve lidar com datas vazias ou nulas', () => {
         const tripWithNullDate: Trip = {
-            dataHoraPartida: null,
+           "dataHoraPartida": null,
             "id": 58,
             "precoBase": 235.00,
             "assentosDisponiveis": 31,

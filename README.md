@@ -41,6 +41,9 @@ docker compose up --build
 A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
 ### 🧪 Como rodar os testes
+
+> **Nota:** O projeto conta com testes unitários de componentes e helpers. Testes E2E não foram implementados, pois o projeto depende de uma API real para os fluxos de ponta a ponta. Componentes puramente composicionais do HeroUI também foram omitidos, já que a biblioteca possui sua própria cobertura de testes.
+
 ```shell
 pnpm run test
 ```

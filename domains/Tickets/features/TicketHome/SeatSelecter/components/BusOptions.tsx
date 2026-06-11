@@ -25,6 +25,7 @@ export default function BusOptions({ onChange, value }: TBusOptionsProps) {
             seats.push(
                 <div
                     role={`button`}
+                    data-testid={id}
                     id={id}
                     className={clsx({
                         'w-[16px] h-[16px] rounded-sm mb-4': true,

@@ -1,4 +1,4 @@
-export default function convertDataStringToDbFormat(dataString: string): string {
+export default function convertDataStringToDbFormat(dataString: string | number): string {
     const date = new Date(dataString);
     const saoPauloDate = new Date(date.getTime());
     const year = saoPauloDate.getFullYear();
