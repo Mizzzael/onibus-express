@@ -56,7 +56,7 @@ export default function Success() {
                         className={clsx({
                             "my-2 ring-1 uppercase block mx-auto md:mx-0": true,
                             "ring-gray-200 text-gray-400": !isDarkMode,
-                            "ring-(--dark-gray) text-(--dark-gray)": isDarkMode,
+                            "ring-white text-white": isDarkMode,
                         })}
                         variant={'ghost'}
                         onClick={() => {

@@ -21,6 +21,8 @@ import {useRouter} from "next/navigation";
 import clsx from "clsx";
 import useDarkMode from "@/commons/hooks/useDarkMode";
 import useCartStore from "@/domains/Cart/store/Cart/useCartStore";
+import useTicketStore from "@/domains/Tickets/store/Ticket/useTicketStore";
+import type Trip from "@/domains/Tickets/models/Ticket/trip";
 
 export default function PassengerForm() {
     let minDate = today(getLocalTimeZone());
@@ -28,6 +30,7 @@ export default function PassengerForm() {
     const isDarkMode = useDarkMode();
     const nextStep = useCartStore((state) => state.nextStep);
     const addUser = useCartStore((state) => state.setUser);
+    const cart = useTicketStore<Trip[]>(( state ) => state.cart);
 
     const [ birthday, setBirthday ] = useState<DateValue | null>(null);
     const [ passenger, setPassenger ] = useState<User>({
@@ -188,7 +191,7 @@ export default function PassengerForm() {
                         }}
                     />
                     <footer className={'py-4'}>
-                        <Button size={"lg"} type={"submit"} isDisabled={!isValid()} className={"w-full bg-success text-white uppercase mb-4 rounded-xl"}>
+                        <Button size={"lg"} type={"submit"} isDisabled={!isValid() || !cart.length} className={"w-full bg-success text-white uppercase mb-4 rounded-xl"}>
                             Seguinte
                         </Button>
                         <Button onPress={() => {

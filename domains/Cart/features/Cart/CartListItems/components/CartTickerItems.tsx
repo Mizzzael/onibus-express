@@ -3,9 +3,32 @@ import clsx from "clsx";
 import useDarkMode from "@/commons/hooks/useDarkMode";
 import {Button} from "@heroui/react";
 import {HiOutlineTrash} from "react-icons/hi2";
+import type Trip from "@/domains/Tickets/models/Ticket/trip";
+import {HiArchiveBoxXMark} from "react-icons/hi2";
+import useTicketStore from "@/domains/Tickets/store/Ticket/useTicketStore";
 
-export default function CartTickerItems({}) {
+function CartEmpty() {
     const isDarkMode = useDarkMode()
+    return (
+        <div className={'w-full mb-4'}>
+            <Container>
+                <section className={clsx({
+                    "w-full rounded-xl ring-1 p-4 flex items-center justify-center h-[50vh]": true,
+                    "ring-gray-300 bg-white text-gray-300": !isDarkMode,
+                })}>
+                    <HiArchiveBoxXMark size={'6rem'} />
+                </section>
+            </Container>
+        </div>
+    )
+}
+
+export default function CartTickerItems({ cart: [ trip ], seat }: { cart: Trip[]; seat?: string }) {
+    const isDarkMode = useDarkMode()
+    const clear = useTicketStore((state) => state.clearCart)
+
+    if (!trip || !trip.id) return <CartEmpty />
+
     return (
         <div className={'w-full mb-4'}>
             <Container>
@@ -29,7 +52,7 @@ export default function CartTickerItems({}) {
                             </div>
                             <div>
                                 <p className="text-lg font-title font-bold text-right">
-                                    São Paulo
+                                    { trip.route.origem }
                                 </p>
                             </div>
                         </section>
@@ -41,7 +64,7 @@ export default function CartTickerItems({}) {
                             </div>
                             <div>
                                 <p className="text-lg font-title font-bold text-right">
-                                    Recife
+                                    { trip.route.destino }
                                 </p>
                             </div>
                         </section>
@@ -53,7 +76,7 @@ export default function CartTickerItems({}) {
                             </div>
                             <div>
                                 <p className="text-lg font-title font-bold text-right">
-                                    10h40m
+                                    { trip.route.duracaoEstimada }
                                 </p>
                             </div>
                         </section>
@@ -65,7 +88,7 @@ export default function CartTickerItems({}) {
                             </div>
                             <div>
                                 <p className="text-lg font-title font-bold text-right">
-                                    D-01
+                                    { seat }
                                 </p>
                             </div>
                         </section>
@@ -75,6 +98,7 @@ export default function CartTickerItems({}) {
                             variant={"danger"}
                             isIconOnly={true}
                             size={"lg"}
+                            onClick={() => clear?.()}
                         >
                             <HiOutlineTrash />
                         </Button>

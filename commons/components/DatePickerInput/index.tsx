@@ -19,6 +19,7 @@ export type TDatePickerInputProps = {
     onChange?: (value: DateValue | null) => void;
     value?: DateValue;
     minDate?: DateValue;
+    placeholder?: DateValue;
     validate?: (value: DateValue | null) => boolean|null|ValidationError|undefined;
     isRequired?: boolean;
     isDisabled?: boolean;
@@ -38,6 +39,7 @@ export default function DatePickerInput({
     isDisabled,
     minDate,
     isInvalid,
+    placeholder,
 }: TDatePickerInputProps) {
     return (
         <DatePicker
@@ -53,6 +55,7 @@ export default function DatePickerInput({
             validate={validate}
             isDisabled={isDisabled}
             isInvalid={isInvalid}
+            placeholderValue={placeholder}
         >
             {({ state }) => (
                 <>

@@ -1,5 +1,7 @@
 "use client"
-export default function DurationItem() {
+import type Trip from "@/domains/Tickets/models/Ticket/trip";
+
+export default function DurationItem({ route: { duracaoEstimada } }: Trip) {
     return (
         <div>
             <header>
@@ -9,7 +11,7 @@ export default function DurationItem() {
             </header>
             <section>
                 <p className={"font-bold text-2xl font-title"}>
-                    4h15m
+                    { duracaoEstimada }
                 </p>
             </section>
         </div>

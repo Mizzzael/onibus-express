@@ -5,12 +5,21 @@ import useCartStore from "@/domains/Cart/store/Cart/useCartStore";
 import ServiceContract from "@/domains/Cart/features/Cart/CartAsideSteps/components/ServiceContract";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
+import {fakeDelay} from "@/commons/helpers/fakeDelay";
+import LoadingCart from "@/domains/Cart/features/Cart/CartAsideSteps/components/LoadingCart";
 
 export default function PaymentStep() {
     const isDarkMode = useDarkMode();
     const [ isOpen, setOpen ] = useState<boolean>(false);
     const backSteps = useCartStore((state) => state.prevStep)
     const router = useRouter();
+    const [ loading, setLoading ] = useState<boolean>(false);
+
+    const loadingFake = async () => {
+        setLoading(true);
+        await fakeDelay(3000);
+        router.push("/cart/success?code=ABC-123");
+    }
 
     return (
     <>
@@ -60,8 +69,12 @@ export default function PaymentStep() {
             isOpen={isOpen}
             cancel={() => setOpen(false)}
             confirm={() => {
-                router.push("/cart/success?code=ABC-123");
+                setOpen(false)
+                loadingFake();
             }}
         />
+        { loading && (
+            <LoadingCart />
+        )}
     </>)
 }

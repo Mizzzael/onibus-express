@@ -13,137 +13,173 @@ import {DatePicker} from "@heroui/react";
 import {DateField} from "@heroui/react";
 import {Calendar} from "@heroui/react";
 import {InputGroup} from "@heroui/react";
-import {HiMap} from "react-icons/hi2";
 import {TimeField} from "@heroui/react";
 import {TextField} from "@heroui/react";
 import useDarkMode from "@/commons/hooks/useDarkMode";
 import clsx from "clsx";
+import {HiMapPin} from "react-icons/hi2";
+import type {TTripsFilters} from "@/domains/Tickets/hooks/API/useGetTrips";
+import {useCallback} from "react";
+import {HiMiniTrash} from "react-icons/hi2";
+import DatePickerInput from "@/commons/components/DatePickerInput";
+import type {DateValue} from "@heroui/react";
+import {Chip} from "@heroui/react";
+import formatDate from "@/commons/helpers/formatDate";
 
-export default function SearchInput() {
-    const [ onlyOrigin, setOnlyOrigin ] = useState<boolean>(false)
+type SearchInputProps = {
+    filters: TTripsFilters;
+    onChange?: (filters: TTripsFilters) => void;
+}
+
+export default function SearchInput({ filters, onChange }: SearchInputProps) {
     const isDarkMode = useDarkMode();
+    const [ origin, setOrigin ] = useState<string | null>(null)
+    const [ destiny, setDestiny ] = useState<string | null>(null)
+    const [ timeForTravel, setTimeForTravel ] = useState<DateValue | null>(null)
+
+    const resetFilters = () => {
+        onChange?.({
+            page: 1,
+            size: 20,
+            origem: undefined,
+            destino: undefined,
+            dataHoraPartida: undefined,
+        })
+    }
+
+    const sendFilters = useCallback(() => {
+        onChange?.({
+            ...filters,
+            page: 1,
+            origem: origin || filters.origem || undefined,
+            destino: destiny || filters.destino || undefined,
+            dataHoraPartida: timeForTravel || undefined,
+        })
+    }, [ filters, origin, destiny, onChange, timeForTravel ])
 
     return (
         <section className="w-full">
             <Container>
                 <Image className={"mx-auto max-w-50"} alt={'Onibus'} src={logo}/>
                 <section className={clsx({
-                    //(--dark-ring-color)
                     'rounded-xl shadow-xs p-4 mx-auto': true,
                     'bg-white': !isDarkMode,
                     'bg-(--dark-gray)': isDarkMode,
                 })}>
                     <section className={'w-full grid md:grid-cols-[1fr_1fr_1fr] grid-cols-[1fr] gap-3 items-center justify-end'}>
-                        <TextField>
-                            <Label>Origem:</Label>
-                            <InputGroup className={clsx({
-                                "rounded-xl ring-1": true,
-                                "ring-gray-200": !isDarkMode,
-                                "ring-(--dark-ring-color)": isDarkMode,
-                            })}>
-                                <InputGroup.Prefix>
-                                    <HiMap size={'1.4em'} />
-                                </InputGroup.Prefix>
-                                <InputGroup.Input className={'w-full bg-transparent'} placeholder={'Origem'} />
-                            </InputGroup>
-                        </TextField>
-                        <TextField>
+                        <div>
+                            <TextField
+                                value={origin || undefined}
+                                onChange={(value) => {
+                                    setOrigin(value);
+                                }}
+                            >
+                                <Label>Origem:</Label>
+                                <InputGroup
+                                    className={clsx({
+                                        "rounded-xl ring-1": true,
+                                        "ring-gray-200": !isDarkMode,
+                                        "ring-(--dark-ring-color)": isDarkMode,
+                                    })}
+                                >
+                                    <InputGroup.Prefix
+                                        className={clsx({
+                                            "text-black": !isDarkMode,
+                                            "text-white": isDarkMode,
+                                        })}
+                                    >
+                                        <HiMapPin size={'1.4em'} />
+                                    </InputGroup.Prefix>
+                                    <InputGroup.Input className={'w-full bg-transparent'} placeholder={filters.origem || 'Origem'} />
+                                </InputGroup>
+                            </TextField>
+                        </div>
+                        <TextField
+                            value={destiny || undefined}
+                            onChange={(value) => {
+                                setDestiny(value);
+                            }}
+                        >
                             <Label>Destino:</Label>
                             <InputGroup className={clsx({
                                 "rounded-xl ring-1": true,
                                 "ring-gray-200": !isDarkMode,
                                 "ring-(--dark-ring-color)": isDarkMode,
                             })}>
-                                <InputGroup.Prefix>
-                                    <HiMap size={'1.4em'} />
+                                <InputGroup.Prefix className={clsx({
+                                    "text-black": !isDarkMode,
+                                    "text-white": isDarkMode,
+                                })}>
+                                    <HiMapPin size={'1.4em'} />
                                 </InputGroup.Prefix>
-                                <InputGroup.Input disabled={onlyOrigin} className={'w-full bg-transparent'} placeholder={'Destino'} />
+                                <InputGroup.Input className={'w-full bg-transparent'} placeholder={filters.destino || 'Destino'} />
                             </InputGroup>
                         </TextField>
                         <div className={"grid grid-cols-[1fr] gap-3 items-center"}>
-                            <DatePicker aria-label={"Data de ida"} granularity={"minute"} className="w-full" name="date">
-                                {({ state }) => (
-                                    <>
-                                        <Label>Data de ida:</Label>
-                                        <DateField.Group className={clsx({
-                                            "rounded-xl ring-1": true,
-                                            "ring-gray-200": !isDarkMode,
-                                            "ring-(--dark-ring-color)": isDarkMode,
-                                        })} fullWidth>
-                                            <DateField.Input>{(segment) => <DateField.Segment segment={segment} />}</DateField.Input>
-                                            <DateField.Suffix>
-                                                <DatePicker.Trigger>
-                                                    <DatePicker.TriggerIndicator />
-                                                </DatePicker.Trigger>
-                                            </DateField.Suffix>
-                                        </DateField.Group>
-                                        <DatePicker.Popover>
-                                            <Calendar aria-label="Event date">
-                                                <Calendar.Header>
-                                                    <Calendar.YearPickerTrigger>
-                                                        <Calendar.YearPickerTriggerHeading />
-                                                        <Calendar.YearPickerTriggerIndicator />
-                                                    </Calendar.YearPickerTrigger>
-                                                    <Calendar.NavButton slot="previous" />
-                                                    <Calendar.NavButton slot="next" />
-                                                </Calendar.Header>
-                                                <Calendar.Grid>
-                                                    <Calendar.GridHeader>
-                                                        {(day) => <Calendar.HeaderCell>{day}</Calendar.HeaderCell>}
-                                                    </Calendar.GridHeader>
-                                                    <Calendar.GridBody>{(date) => <Calendar.Cell date={date} />}</Calendar.GridBody>
-                                                </Calendar.Grid>
-                                                <Calendar.YearPickerGrid>
-                                                    <Calendar.YearPickerGridBody>
-                                                        {({year}) => <Calendar.YearPickerCell year={year} />}
-                                                    </Calendar.YearPickerGridBody>
-                                                </Calendar.YearPickerGrid>
-                                            </Calendar>
-                                            <div className="flex items-center justify-between">
-                                                <Label>Time</Label>
-                                                <TimeField
-                                                    aria-label="Time"
-                                                    granularity={"minute"}
-                                                    hideTimeZone={true}
-                                                    name="time"
-                                                    onChange={(v) => state.setTimeValue(v as TimeValue)}
-                                                    value={state.timeValue}
-                                                >
-                                                    <TimeField.Group variant="secondary">
-                                                        <TimeField.Input>
-                                                            {(segment) => <TimeField.Segment segment={segment} />}
-                                                        </TimeField.Input>
-                                                    </TimeField.Group>
-                                                </TimeField>
-                                            </div>
-                                        </DatePicker.Popover>
-                                    </>
-                                )}
-                            </DatePicker>
+                            <DatePickerInput
+                                label={"Data de ida:"}
+                                granularity={'minute'}
+                                classDateFieldGroup={clsx({
+                                    "rounded-xl ring-1": true,
+                                    "ring-gray-200": !isDarkMode,
+                                    "ring-(--dark-ring-color)": isDarkMode,
+                                })}
+                                value={timeForTravel || undefined}
+                                onChange={(value) => {
+                                    setTimeForTravel(value);
+                                }}
+                                placeholder={filters.dataHoraPartida}
+                            />
                         </div>
                     </section>
                     <section className={"grid grid-cols-1 items-center pt-4 gap-3"}>
                         <div className={"flex items-center justify-end gap-3"}>
-                            <Checkbox className={"gap-1"} id="only-origin" onPress={() => setOnlyOrigin(!onlyOrigin)}>
-                                <Checkbox.Control>
-                                    <Checkbox.Indicator />
-                                </Checkbox.Control>
-                                <Checkbox.Content>
-                                    <Label htmlFor="only-origin">Somente ida?</Label>
-                                </Checkbox.Content>
-                            </Checkbox>
+                            {(filters.destino || filters.origem || filters.dataHoraPartida) && (
+                                <Button isIconOnly variant={"danger"} onPress={() => {
+                                    resetFilters();
+                                }}>
+                                    <HiMiniTrash />
+                                </Button>
+                            )}
                             <Button
                                 isIconOnly
                                 variant={"ghost"}
                                 size={"sm"}
                                 className={'ring ring-success my-0'}
+                                onClick={() => {
+                                    sendFilters();
+                                }}
                             >
                                 <HiMagnifyingGlass className="text-success" />
                             </Button>
                         </div>
                     </section>
                 </section>
-                <footer className={"mx-auto mt-2 flex justify-end"}>
+                <footer className={"mx-auto mt-2 flex justify-end gap-3 flex-wrap items-center"}>
+                    {
+                        filters.origem && (
+                            <Chip variant={'soft'}>
+                                Origem: { filters.origem }
+                            </Chip>
+                        )
+                    }
+
+                    {
+                        filters.destino && (
+                            <Chip variant={'soft'}>
+                                Destino: { filters.destino }
+                            </Chip>
+                        )
+                    }
+
+                    {
+                        filters.dataHoraPartida && (
+                            <Chip variant={'soft'}>
+                                Data de ida: { formatDate(filters.dataHoraPartida.toString()) }
+                            </Chip>
+                        )
+                    }
+
                     <ThemeSwitch />
                 </footer>
             </Container>

@@ -1,94 +1,784 @@
 {
-  "rotas": [
-    {
-      "id": 1,
-      "origem": "São Paulo",
-      "destino": "Rio de Janeiro",
-      "duracaoEstimada": "2h30m"
-    },
-    {
-      "id": 2,
-      "origem": "Brasília",
-      "destino": "Salvador",
-      "duracaoEstimada": "4h15m"
-    },
-    {
-      "id": 3,
-      "origem": "Porto Alegre",
-      "destino": "Florianópolis",
-      "duracaoEstimada": "1h45m"
-    }
-  ],
   "viagens": [
     {
       "id": 1,
       "rotaId": 1,
       "dataHoraPartida": "2026-06-15T08:00:00",
       "precoBase": 150.00,
-      "assentosDisponiveis": 30
+      "assentosDisponiveis": 30,
+      "route": {
+        "id": 1,
+        "origem": "Porto Alegre",
+        "destino": "Florianópolis",
+        "duracaoEstimada": "1h45m"
+      }
     },
     {
       "id": 2,
       "rotaId": 2,
       "dataHoraPartida": "2026-06-16T14:30:00",
       "precoBase": 280.00,
-      "assentosDisponiveis": 15
+      "assentosDisponiveis": 15,
+      "route": {
+        "id": 2,
+        "origem": "Brasília",
+        "destino": "Salvador",
+        "duracaoEstimada": "4h15m"
+      }
     },
     {
       "id": 3,
       "rotaId": 3,
       "dataHoraPartida": "2026-06-17T10:15:00",
       "precoBase": 85.00,
-      "assentosDisponiveis": 40
-    }
-  ],
-  "passageiros": [
-    {
-      "id": 1,
-      "nome": "João Silva",
-      "cpf": "123.456.789-00",
-      "email": "joao.silva@email.com",
-      "dataNascimento": "1985-03-15"
+      "assentosDisponiveis": 40,
+      "route": {
+        "id": 3,
+        "origem": "São Paulo",
+        "destino": "Rio de Janeiro",
+        "duracaoEstimada": "2h30m"
+      }
     },
     {
-      "id": 2,
-      "nome": "Maria Oliveira",
-      "cpf": "987.654.321-00",
-      "email": "maria.oliveira@email.com",
-      "dataNascimento": "1990-07-22"
+      "id": 4,
+      "rotaId": 4,
+      "dataHoraPartida": "2026-06-18T09:30:00",
+      "precoBase": 250.00,
+      "assentosDisponiveis": 20,
+      "route": {
+        "id": 4,
+        "origem": "Estocolmo",
+        "destino": "Malmö",
+        "duracaoEstimada": "3h00m"
+      }
     },
     {
-      "id": 3,
-      "nome": "Carlos Santos",
-      "cpf": "456.789.123-00",
-      "email": "carlos.santos@email.com",
-      "dataNascimento": "1988-11-05"
-    }
-  ],
-  "reservas": [
-    {
-      "id": 1,
-      "viagemId": 1,
-      "passageiroId": 1,
-      "numeroAssento": "A12",
-      "status": "confirmada",
-      "codigoReserva": "RES001"
+      "id": 5,
+      "rotaId": 5,
+      "dataHoraPartida": "2026-06-19T11:45:00",
+      "precoBase": 180.00,
+      "assentosDisponiveis": 25,
+      "route": {
+        "id": 5,
+        "origem": "Estocolmo",
+        "destino": "Uppsala",
+        "duracaoEstimada": "1h30m"
+      }
     },
     {
-      "id": 2,
-      "viagemId": 2,
-      "passageiroId": 2,
-      "numeroAssento": "B5",
-      "status": "aguardando_pagamento",
-      "codigoReserva": "RES002"
+      "id": 6,
+      "rotaId": 6,
+      "dataHoraPartida": "2026-06-20T13:20:00",
+      "precoBase": 320.00,
+      "assentosDisponiveis": 18,
+      "route": {
+        "id": 6,
+        "origem": "Estocolmo",
+        "destino": "Göteborg",
+        "duracaoEstimada": "4h15m"
+      }
     },
     {
-      "id": 3,
-      "viagemId": 3,
-      "passageiroId": 3,
-      "numeroAssento": "C18",
-      "status": "confirmada",
-      "codigoReserva": "RES003"
+      "id": 7,
+      "rotaId": 7,
+      "dataHoraPartida": "2026-06-21T08:00:00",
+      "precoBase": 90.00,
+      "assentosDisponiveis": 35,
+      "route": {
+        "id": 7,
+        "origem": "Estocolmo",
+        "destino": "Linköping",
+        "duracaoEstimada": "2h45m"
+      }
+    },
+    {
+      "id": 8,
+      "rotaId": 8,
+      "dataHoraPartida": "2026-06-22T15:30:00",
+      "precoBase": 210.00,
+      "assentosDisponiveis": 22,
+      "route": {
+        "id": 8,
+        "origem": "Estocolmo",
+        "destino": "Västerås",
+        "duracaoEstimada": "3h15m"
+      }
+    },
+    {
+      "id": 9,
+      "rotaId": 9,
+      "dataHoraPartida": "2026-06-23T12:45:00",
+      "precoBase": 275.00,
+      "assentosDisponiveis": 16,
+      "route": {
+        "id": 9,
+        "origem": "Estocolmo",
+        "destino": "Helsingborg",
+        "duracaoEstimada": "3h45m"
+      }
+    },
+    {
+      "id": 10,
+      "rotaId": 10,
+      "dataHoraPartida": "2026-06-24T07:30:00",
+      "precoBase": 190.00,
+      "assentosDisponiveis": 28,
+      "route": {
+        "id": 10,
+        "origem": "Estocolmo",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
+    },
+    {
+      "id": 11,
+      "rotaId": 11,
+      "dataHoraPartida": "2026-06-25T14:15:00",
+      "precoBase": 160.00,
+      "assentosDisponiveis": 32,
+      "route": {
+        "id": 11,
+        "origem": "Estocolmo",
+        "destino": "Umeå",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 12,
+      "rotaId": 12,
+      "dataHoraPartida": "2026-06-26T09:45:00",
+      "precoBase": 300.00,
+      "assentosDisponiveis": 14,
+      "route": {
+        "id": 12,
+        "origem": "Estocolmo",
+        "destino": "Luleå",
+        "duracaoEstimada": "5h30m"
+      }
+    },
+    {
+      "id": 13,
+      "rotaId": 13,
+      "dataHoraPartida": "2026-06-27T11:00:00",
+      "precoBase": 240.00,
+      "assentosDisponiveis": 20,
+      "route": {
+        "id": 13,
+        "origem": "Estocolmo",
+        "destino": "Växjö",
+        "duracaoEstimada": "2h15m"
+      }
+    },
+    {
+      "id": 14,
+      "rotaId": 14,
+      "dataHoraPartida": "2026-06-28T13:30:00",
+      "precoBase": 170.00,
+      "assentosDisponiveis": 25,
+      "route": {
+        "id": 14,
+        "origem": "Estocolmo",
+        "destino": "Kalmar",
+        "duracaoEstimada": "3h30m"
+      }
+    },
+    {
+      "id": 15,
+      "rotaId": 15,
+      "dataHoraPartida": "2026-06-29T08:45:00",
+      "precoBase": 220.00,
+      "assentosDisponiveis": 18,
+      "route": {
+        "id": 15,
+        "origem": "Estocolmo",
+        "destino": "Visby",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 16,
+      "rotaId": 16,
+      "dataHoraPartida": "2026-07-01T15:30:00",
+      "precoBase": 290.00,
+      "assentosDisponiveis": 19,
+      "route": {
+        "id": 16,
+        "origem": "Estocolmo",
+        "destino": "Malmö",
+        "duracaoEstimada": "3h00m"
+      }
+    },
+    {
+      "id": 17,
+      "rotaId": 17,
+      "dataHoraPartida": "2026-07-02T09:00:00",
+      "precoBase": 350.00,
+      "assentosDisponiveis": 12,
+      "route": {
+        "id": 17,
+        "origem": "Estocolmo",
+        "destino": "Göteborg",
+        "duracaoEstimada": "4h15m"
+      }
+    },
+    {
+      "id": 18,
+      "rotaId": 18,
+      "dataHoraPartida": "2026-07-03T12:30:00",
+      "precoBase": 260.00,
+      "assentosDisponiveis": 24,
+      "route": {
+        "id": 18,
+        "origem": "Estocolmo",
+        "destino": "Västerås",
+        "duracaoEstimada": "3h15m"
+      }
+    },
+    {
+      "id": 19,
+      "rotaId": 19,
+      "dataHoraPartida": "2026-07-04T16:45:00",
+      "precoBase": 230.00,
+      "assentosDisponiveis": 22,
+      "route": {
+        "id": 19,
+        "origem": "Estocolmo",
+        "destino": "Linköping",
+        "duracaoEstimada": "2h45m"
+      }
+    },
+    {
+      "id": 20,
+      "rotaId": 20,
+      "dataHoraPartida": "2026-07-05T10:15:00",
+      "precoBase": 195.00,
+      "assentosDisponiveis": 30,
+      "route": {
+        "id": 20,
+        "origem": "Estocolmo",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
+    },
+    {
+      "id": 21,
+      "rotaId": 21,
+      "dataHoraPartida": "2026-07-06T08:00:00",
+      "precoBase": 310.00,
+      "assentosDisponiveis": 15,
+      "route": {
+        "id": 21,
+        "origem": "Estocolmo",
+        "destino": "Umeå",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 22,
+      "rotaId": 22,
+      "dataHoraPartida": "2026-07-07T13:45:00",
+      "precoBase": 280.00,
+      "assentosDisponiveis": 17,
+      "route": {
+        "id": 22,
+        "origem": "Estocolmo",
+        "destino": "Luleå",
+        "duracaoEstimada": "5h30m"
+      }
+    },
+    {
+      "id": 23,
+      "rotaId": 23,
+      "dataHoraPartida": "2026-07-08T14:30:00",
+      "precoBase": 215.00,
+      "assentosDisponiveis": 26,
+      "route": {
+        "id": 23,
+        "origem": "Estocolmo",
+        "destino": "Växjö",
+        "duracaoEstimada": "2h15m"
+      }
+    },
+    {
+      "id": 24,
+      "rotaId": 24,
+      "dataHoraPartida": "2026-07-09T11:00:00",
+      "precoBase": 180.00,
+      "assentosDisponiveis": 31,
+      "route": {
+        "id": 24,
+        "origem": "Estocolmo",
+        "destino": "Kalmar",
+        "duracaoEstimada": "3h30m"
+      }
+    },
+    {
+      "id": 25,
+      "rotaId": 25,
+      "dataHoraPartida": "2026-07-10T09:45:00",
+      "precoBase": 265.00,
+      "assentosDisponiveis": 23,
+      "route": {
+        "id": 25,
+        "origem": "Estocolmo",
+        "destino": "Visby",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 26,
+      "rotaId": 26,
+      "dataHoraPartida": "2026-07-11T15:30:00",
+      "precoBase": 240.00,
+      "assentosDisponiveis": 21,
+      "route": {
+        "id": 26,
+        "origem": "Göteborg",
+        "destino": "Malmö",
+        "duracaoEstimada": "3h00m"
+      }
+    },
+    {
+      "id": 27,
+      "rotaId": 27,
+      "dataHoraPartida": "2026-07-12T10:15:00",
+      "precoBase": 320.00,
+      "assentosDisponiveis": 14,
+      "route": {
+        "id": 27,
+        "origem": "Göteborg",
+        "destino": "Uppsala",
+        "duracaoEstimada": "1h30m"
+      }
+    },
+    {
+      "id": 28,
+      "rotaId": 28,
+      "dataHoraPartida": "2026-07-13T13:45:00",
+      "precoBase": 190.00,
+      "assentosDisponiveis": 28,
+      "route": {
+        "id": 28,
+        "origem": "Göteborg",
+        "destino": "Linköping",
+        "duracaoEstimada": "2h45m"
+      }
+    },
+    {
+      "id": 29,
+      "rotaId": 29,
+      "dataHoraPartida": "2026-07-14T08:30:00",
+      "precoBase": 270.00,
+      "assentosDisponiveis": 20,
+      "route": {
+        "id": 29,
+        "origem": "Göteborg",
+        "destino": "Västerås",
+        "duracaoEstimada": "3h15m"
+      }
+    },
+    {
+      "id": 30,
+      "rotaId": 30,
+      "dataHoraPartida": "2026-07-15T14:00:00",
+      "precoBase": 250.00,
+      "assentosDisponiveis": 25,
+      "route": {
+        "id": 30,
+        "origem": "Göteborg",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
+    },
+    {
+      "id": 31,
+      "rotaId": 31,
+      "dataHoraPartida": "2026-07-16T11:30:00",
+      "precoBase": 300.00,
+      "assentosDisponiveis": 18,
+      "route": {
+        "id": 31,
+        "origem": "Göteborg",
+        "destino": "Umeå",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 32,
+      "rotaId": 32,
+      "dataHoraPartida": "2026-07-17T15:45:00",
+      "precoBase": 280.00,
+      "assentosDisponiveis": 16,
+      "route": {
+        "id": 32,
+        "origem": "Göteborg",
+        "destino": "Luleå",
+        "duracaoEstimada": "5h30m"
+      }
+    },
+    {
+      "id": 33,
+      "rotaId": 33,
+      "dataHoraPartida": "2026-07-18T12:00:00",
+      "precoBase": 220.00,
+      "assentosDisponiveis": 29,
+      "route": {
+        "id": 33,
+        "origem": "Göteborg",
+        "destino": "Växjö",
+        "duracaoEstimada": "2h15m"
+      }
+    },
+    {
+      "id": 34,
+      "rotaId": 34,
+      "dataHoraPartida": "2026-07-19T08:00:00",
+      "precoBase": 195.00,
+      "assentosDisponiveis": 32,
+      "route": {
+        "id": 34,
+        "origem": "Göteborg",
+        "destino": "Kalmar",
+        "duracaoEstimada": "3h30m"
+      }
+    },
+    {
+      "id": 35,
+      "rotaId": 35,
+      "dataHoraPartida": "2026-07-20T14:30:00",
+      "precoBase": 275.00,
+      "assentosDisponiveis": 22,
+      "route": {
+        "id": 35,
+        "origem": "Göteborg",
+        "destino": "Visby",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 36,
+      "rotaId": 36,
+      "dataHoraPartida": "2026-07-21T10:00:00",
+      "precoBase": 245.00,
+      "assentosDisponiveis": 27,
+      "route": {
+        "id": 36,
+        "origem": "Malmö",
+        "destino": "Uppsala",
+        "duracaoEstimada": "1h30m"
+      }
+    },
+    {
+      "id": 37,
+      "rotaId": 37,
+      "dataHoraPartida": "2026-07-22T13:45:00",
+      "precoBase": 290.00,
+      "assentosDisponiveis": 19,
+      "route": {
+        "id": 37,
+        "origem": "Malmö",
+        "destino": "Linköping",
+        "duracaoEstimada": "2h45m"
+      }
+    },
+    {
+      "id": 38,
+      "rotaId": 38,
+      "dataHoraPartida": "2026-07-23T16:00:00",
+      "precoBase": 260.00,
+      "assentosDisponiveis": 24,
+      "route": {
+        "id": 38,
+        "origem": "Malmö",
+        "destino": "Västerås",
+        "duracaoEstimada": "3h15m"
+      }
+    },
+    {
+      "id": 39,
+      "rotaId": 39,
+      "dataHoraPartida": "2026-07-24T08:30:00",
+      "precoBase": 230.00,
+      "assentosDisponiveis": 31,
+      "route": {
+        "id": 39,
+        "origem": "Malmö",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
+    },
+    {
+      "id": 40,
+      "rotaId": 40,
+      "dataHoraPartida": "2026-07-25T12:00:00",
+      "precoBase": 310.00,
+      "assentosDisponiveis": 16,
+      "route": {
+        "id": 40,
+        "origem": "Malmö",
+        "destino": "Umeå",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 41,
+      "rotaId": 41,
+      "dataHoraPartida": "2026-07-26T15:30:00",
+      "precoBase": 290.00,
+      "assentosDisponiveis": 18,
+      "route": {
+        "id": 41,
+        "origem": "Malmö",
+        "destino": "Luleå",
+        "duracaoEstimada": "5h30m"
+      }
+    },
+    {
+      "id": 42,
+      "rotaId": 42,
+      "dataHoraPartida": "2026-07-27T10:45:00",
+      "precoBase": 225.00,
+      "assentosDisponiveis": 26,
+      "route": {
+        "id": 42,
+        "origem": "Malmö",
+        "destino": "Växjö",
+        "duracaoEstimada": "2h15m"
+      }
+    },
+    {
+      "id": 43,
+      "rotaId": 43,
+      "dataHoraPartida": "2026-07-28T14:00:00",
+      "precoBase": 200.00,
+      "assentosDisponiveis": 30,
+      "route": {
+        "id": 43,
+        "origem": "Malmö",
+        "destino": "Kalmar",
+        "duracaoEstimada": "3h30m"
+      }
+    },
+    {
+      "id": 44,
+      "rotaId": 44,
+      "dataHoraPartida": "2026-07-29T11:30:00",
+      "precoBase": 280.00,
+      "assentosDisponiveis": 21,
+      "route": {
+        "id": 44,
+        "origem": "Malmö",
+        "destino": "Visby",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 45,
+      "rotaId": 45,
+      "dataHoraPartida": "2026-07-30T08:00:00",
+      "precoBase": 250.00,
+      "assentosDisponiveis": 28,
+      "route": {
+        "id": 45,
+        "origem": "Uppsala",
+        "destino": "Linköping",
+        "duracaoEstimada": "2h45m"
+      }
+    },
+    {
+      "id": 46,
+      "rotaId": 46,
+      "dataHoraPartida": "2026-07-31T12:30:00",
+      "precoBase": 270.00,
+      "assentosDisponiveis": 25,
+      "route": {
+        "id": 46,
+        "origem": "Uppsala",
+        "destino": "Västerås",
+        "duracaoEstimada": "3h15m"
+      }
+    },
+    {
+      "id": 47,
+      "rotaId": 47,
+      "dataHoraPartida": "2026-08-01T16:00:00",
+      "precoBase": 300.00,
+      "assentosDisponiveis": 19,
+      "route": {
+        "id": 47,
+        "origem": "Uppsala",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
+    },
+    {
+      "id": 48,
+      "rotaId": 48,
+      "dataHoraPartida": "2026-08-02T10:30:00",
+      "precoBase": 290.00,
+      "assentosDisponiveis": 22,
+      "route": {
+        "id": 48,
+        "origem": "Uppsala",
+        "destino": "Umeå",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 49,
+      "rotaId": 49,
+      "dataHoraPartida": "2026-08-03T14:00:00",
+      "precoBase": 280.00,
+      "assentosDisponiveis": 20,
+      "route": {
+        "id": 49,
+        "origem": "Uppsala",
+        "destino": "Luleå",
+        "duracaoEstimada": "5h30m"
+      }
+    },
+    {
+      "id": 50,
+      "rotaId": 50,
+      "dataHoraPartida": "2026-08-04T18:30:00",
+      "precoBase": 240.00,
+      "assentosDisponiveis": 27,
+      "route": {
+        "id": 50,
+        "origem": "Uppsala",
+        "destino": "Växjö",
+        "duracaoEstimada": "2h15m"
+      }
+    },
+    {
+      "id": 51,
+      "rotaId": 51,
+      "dataHoraPartida": "2026-08-05T09:00:00",
+      "precoBase": 230.00,
+      "assentosDisponiveis": 32,
+      "route": {
+        "id": 51,
+        "origem": "Uppsala",
+        "destino": "Kalmar",
+        "duracaoEstimada": "3h30m"
+      }
+    },
+    {
+      "id": 52,
+      "rotaId": 52,
+      "dataHoraPartida": "2026-08-06T12:30:00",
+      "precoBase": 295.00,
+      "assentosDisponiveis": 24,
+      "route": {
+        "id": 52,
+        "origem": "Uppsala",
+        "destino": "Visby",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 53,
+      "rotaId": 53,
+      "dataHoraPartida": "2026-08-07T15:00:00",
+      "precoBase": 265.00,
+      "assentosDisponiveis": 29,
+      "route": {
+        "id": 53,
+        "origem": "Linköping",
+        "destino": "Västerås",
+        "duracaoEstimada": "3h15m"
+      }
+    },
+    {
+      "id": 54,
+      "rotaId": 54,
+      "dataHoraPartida": "2026-08-08T09:30:00",
+      "precoBase": 285.00,
+      "assentosDisponiveis": 21,
+      "route": {
+        "id": 54,
+        "origem": "Linköping",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
+    },
+    {
+      "id": 55,
+      "rotaId": 55,
+      "dataHoraPartida": "2026-08-09T14:00:00",
+      "precoBase": 320.00,
+      "assentosDisponiveis": 17,
+      "route": {
+        "id": 55,
+        "origem": "Linköping",
+        "destino": "Umeå",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 56,
+      "rotaId": 56,
+      "dataHoraPartida": "2026-08-10T18:30:00",
+      "precoBase": 300.00,
+      "assentosDisponiveis": 20,
+      "route": {
+        "id": 56,
+        "origem": "Linköping",
+        "destino": "Luleå",
+        "duracaoEstimada": "5h30m"
+      }
+    },
+    {
+      "id": 57,
+      "rotaId": 57,
+      "dataHoraPartida": "2026-08-11T12:00:00",
+      "precoBase": 245.00,
+      "assentosDisponiveis": 26,
+      "route": {
+        "id": 57,
+        "origem": "Linköping",
+        "destino": "Växjö",
+        "duracaoEstimada": "2h15m"
+      }
+    },
+    {
+      "id": 58,
+      "rotaId": 58,
+      "dataHoraPartida": "2026-08-12T16:30:00",
+      "precoBase": 235.00,
+      "assentosDisponiveis": 31,
+      "route": {
+        "id": 58,
+        "origem": "Linköping",
+        "destino": "Kalmar",
+        "duracaoEstimada": "3h30m"
+      }
+    },
+    {
+      "id": 59,
+      "rotaId": 59,
+      "dataHoraPartida": "2026-08-13T09:00:00",
+      "precoBase": 290.00,
+      "assentosDisponiveis": 23,
+      "route": {
+        "id": 59,
+        "origem": "Linköping",
+        "destino": "Visby",
+        "duracaoEstimada": "4h00m"
+      }
+    },
+    {
+      "id": 60,
+      "rotaId": 60,
+      "dataHoraPartida": "2026-08-14T07:30:00",
+      "precoBase": 255.00,
+      "assentosDisponiveis": 28,
+      "route": {
+        "id": 60,
+        "origem": "Västerås",
+        "destino": "Norrköping",
+        "duracaoEstimada": "2h30m"
+      }
     }
   ]
 }

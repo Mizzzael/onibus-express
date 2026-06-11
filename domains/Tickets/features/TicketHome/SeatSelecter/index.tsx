@@ -16,16 +16,19 @@ import {useCallback} from "react";
 import {useRouter} from "next/navigation";
 import useDarkMode from "@/commons/hooks/useDarkMode";
 import clsx from "clsx";
+import type Trip from "@/domains/Tickets/models/Ticket/trip";
 
 export type TSeatSelecterProps = {
     isOpen: boolean;
     close: () => void;
-    id: number;
+    trip: Trip;
 }
 
-export default function SeatSelecter({ isOpen, close, id }: TSeatSelecterProps) {
+export default function SeatSelecter({ isOpen, close, trip }: TSeatSelecterProps) {
     const [ seatSelected, setSeatSelected ] = useState<string|null>(null);
     const cart = useTicketStore((state) => state.cart);
+    const addSeat = useTicketStore((state) => state.addSeat)
+    const seat = useTicketStore((state) => state.seat);
     const add = useTicketStore((state) => state.addItemIntoCart);
     const router = useRouter();
     const isDarkMode = useDarkMode();
@@ -35,27 +38,19 @@ export default function SeatSelecter({ isOpen, close, id }: TSeatSelecterProps) 
             return;
         }
 
-        const item: Ticket = {
-            codigoReserva: seatSelected,
-            id: 0,
-            numeroAssento: seatSelected,
-            passageiroId: 1,
-            status: "aguardando_pagamento",
-            viagemId: id
-        }
-
-        add(item);
-    }, [ seatSelected, id]);
+        add(trip);
+        addSeat(seatSelected);
+    }, [ seatSelected, trip]);
 
     const startComponent = useCallback(() => {
         if (cart && cart.length) {
-            const items = cart.filter(({ viagemId: _id }) => id === _id );
-            if (items.length) {
+            const items = cart.filter(({ id: _id }) => trip.id === _id );
+            if (items.length && seat) {
                 /* eslint-disable */
-                setSeatSelected(items[0].numeroAssento);
+                setSeatSelected(seat);
             }
         }
-    }, [ cart ])
+    }, [ cart, trip ])
 
     useEffect(() => {
         if (isOpen) startComponent();
@@ -115,28 +110,28 @@ export default function SeatSelecter({ isOpen, close, id }: TSeatSelecterProps) 
                                             </div>
                                             <header className={"p-4 grid grid-cols-[2fr_1fr_2fr] justify-start gap-2"}>
                                                 <div>
-                                                    <p className={"text-lg text-foreground font-bold"}>
+                                                    <p className={"text-md text-foreground font-bold"}>
                                                         <span className={"text-xs font-light flex items-center gap-1 block"}>
                                                             <HiMapPin size={"1em"} /> Origem
                                                         </span>
-                                                        São Paulo
+                                                        { trip.route.origem }
                                                     </p>
                                                 </div>
                                                 <div className={"flex items-center justify-end"}>
                                                     <HiOutlineArrowsRightLeft size={"1.5em"} />
                                                 </div>
                                                 <div>
-                                                    <p className={"text-lg text-success font-bold text-right"}>
+                                                    <p className={"text-md text-success font-bold text-right"}>
                                                         <span className={"text-xs font-light flex items-center gap-1 justify-end block"}>
                                                             <HiMapPin size={"1em"} /> Destino
                                                         </span>
-                                                        Recife
+                                                        { trip.route.destino }
                                                     </p>
                                                 </div>
                                             </header>
                                             <section className="px-4">
                                                 <p className={"text-md text-primary text-success"}>
-                                                    <b className={"text-foreground"}>Duração:</b> 1D40H
+                                                    <b className={"text-foreground"}>Duração:</b> { trip.route.duracaoEstimada }
                                                 </p>
                                             </section>
                                             {(seatSelected) && (
@@ -149,14 +144,18 @@ export default function SeatSelecter({ isOpen, close, id }: TSeatSelecterProps) 
                                                 </>
                                             ) || null}
                                             <section className={"p-4"}>
-                                                <PriceItem onPress={() => {
-                                                    addIntoCart();
-                                                    close();
-                                                    router.push("/cart");
-                                                }} isDisabled={!seatSelected} />
+                                                <PriceItem
+                                                    price={trip.precoBase}
+                                                    onPress={() => {
+                                                        addIntoCart();
+                                                        close();
+                                                        router.push("/cart");
+                                                    }}
+                                                    isDisabled={!seatSelected}
+                                                />
                                                 <section className="px-4">
                                                     <p className={"text-xs text-primary text-center"}>
-                                                        <b>10</b> ascento restantes
+                                                        <b>{ trip.assentosDisponiveis }</b> ascento restantes
                                                     </p>
                                                 </section>
                                             </section>

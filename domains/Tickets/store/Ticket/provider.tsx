@@ -6,6 +6,7 @@ import type {TicketStore} from "@/domains/Tickets/store/Ticket/store";
 import createTicketStore from "@/domains/Tickets/store/Ticket/store";
 import {useEffect} from "react";
 import {useState} from "react";
+import LoadingBus from "@/commons/components/LoadingBus";
 
 export default function     ProviderStoreTicket({ children }: TChildren<unknown>) {
     const storeRef = useRef<TicketStore | null>(null)
@@ -24,7 +25,7 @@ export default function     ProviderStoreTicket({ children }: TChildren<unknown>
                 <ContextStoreTicket.Provider value={value}>
                     {children}
                 </ContextStoreTicket.Provider>
-            ) || <span />}
+            ) || <LoadingBus />}
         </>
     )
 }
