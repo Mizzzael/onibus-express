@@ -19,7 +19,7 @@ export default function PriceItem({ price, onPress, isDisabled }: TPriceItemProp
             </div>
             <footer className={"py-2"}>
                 <Button isDisabled={isDisabled} className={"bg-success text-white w-full"} onPress={() => {
-                    if (isDisabled) return;
+                    if (isDisabled || !onPress) return;
                     onPress?.();
                 }}>
                     Comprar

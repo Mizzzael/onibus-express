@@ -5,6 +5,6 @@ export const TripSchema = z.object({
     "id": z.number(),
     "dataHoraPartida": z.string(),
     "precoBase": z.number(),
-    "assentosDisponiveis": z.string(),
+    "assentosDisponiveis": z.number(),
     "route": RouteSchema,
 });
